@@ -47,34 +47,6 @@ const fetchFoursquareData = async (latitude, longitude) => {
     }
 };
 
-const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-    const userInput = document.querySelector('#postCode');
-    const postcode = userInput.value;
-    const apiKey = "c2ec54a97eb714e25c3ad89a4fde4e44"; // Replace with your OpenWeatherMap API key
-
-    // Get latitude and longitude for the postcode
-    try {
-        const { latitude, longitude } = await getCoordinatesFromPostcode(postcode);
-
-        // Get weather forecast for the postcode
-        const weatherData = await getWeatherForecast(latitude, longitude, apiKey);
-        console.log(weatherData);
-        displayWeatherData(weatherData); // Display weather data
-
-        // Fetch data from Foursquare using the postcode coordinates
-        const foursquareData = await fetchFoursquareData(latitude, longitude);
-        console.log(foursquareData);
-        // Display FourSquare data on the page
-        displayFourSquareData(foursquareData);
-
-        // Initialize and display the map
-        initMap(latitude, longitude);
-    } catch (error) {
-        console.error("Error:", error);
-    }
-};
-
 
 // Function to display weather data on the page
 const displayWeatherData = (weatherData) => {
@@ -121,6 +93,34 @@ const displayFourSquareData = (fourSquareData) => {
 
         fsDataContainer.appendChild(venueDiv);
     });
+};
+
+const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+    const userInput = document.querySelector('#postCode');
+    const postcode = userInput.value;
+    const apiKey = "c2ec54a97eb714e25c3ad89a4fde4e44"; // Replace with your OpenWeatherMap API key
+
+    // Get latitude and longitude for the postcode
+    try {
+        const { latitude, longitude } = await getCoordinatesFromPostcode(postcode);
+
+        // Get weather forecast for the postcode
+        const weatherData = await getWeatherForecast(latitude, longitude, apiKey);
+        console.log(weatherData);
+        displayWeatherData(weatherData); // Display weather data
+
+        // Fetch data from Foursquare using the postcode coordinates
+        const foursquareData = await fetchFoursquareData(latitude, longitude);
+        console.log(foursquareData);
+        // Display FourSquare data on the page
+        displayFourSquareData(foursquareData);
+
+        // Initialize and display the map
+        initMap(latitude, longitude);
+    } catch (error) {
+        console.error("Error:", error);
+    }
 };
 
 
