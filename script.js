@@ -87,8 +87,11 @@ const displayWeatherData = (weatherData) => {
     const conditions = weatherData.weather[0].description;
     const location = weatherData.name;
 
+    // Convert temperature from Kelvin to Celsius
+    const temperatureCelsius = Math.trunc(temperature - 273.15);
+
     // Update HTML elements with weather information
-    temperatureElement.textContent = `Temperature: ${temperature}°C`;
+    temperatureElement.textContent = `Temperature: ${temperatureCelsius}°C`;
     conditionsElement.textContent = `Conditions: ${conditions}`;
     locationElement.textContent = `Location: ${location}`;
 };
