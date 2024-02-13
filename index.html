@@ -4,13 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather App</title>
+    <!-- Include Leaflet.js library -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script defer src="script.js"></script>
+    <style>
+        /* Style for weather data */
+        .weather-data {
+            margin-top: 20px;
+        }
+
+        .weather-data div {
+            margin-bottom: 10px;
+        }
+
+        /* Style for FourSquare data */
+        .fs-data {
+            margin-top: 20px;
+        }
+
+        .fs-data div {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 
 <body>
-
     <section>
         <!-- User input form -->
         <form id="postcodeForm">
@@ -18,15 +37,21 @@
             <input type="text" id="postCode" placeholder="postcode" required>
             <button type="submit">Submit</button>
         </form>
-
+        <!-- Weather data display -->
+        <div class="weather-data">
+            <div id="temperature"> </div>
+            <div id="conditions"></div>
+            <div id="location"></div>
+        </div>
         <!-- Map output -->
         <div id="map" style="height: 400px;"></div>
+
+        <!-- Four Square output -->
+        <div class="fs-data"></div> <!-- This will be dynamically populated -->
     </section>
 
-    <!-- Street view panorama -->
-    <div id="pano" style="height: 400px;"></div>
-
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> <!-- Include Leaflet.js library -->
+    <!-- Include Leaflet.js library -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
 
 </html>

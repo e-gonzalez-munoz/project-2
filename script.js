@@ -47,7 +47,6 @@ const fetchFoursquareData = async (latitude, longitude) => {
     }
 };
 
-// Function to handle form submission
 const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
     const userInput = document.querySelector('#postCode');
@@ -60,11 +59,14 @@ const handleSubmit = async (event) => {
 
         // Get weather forecast for the postcode
         const weatherData = await getWeatherForecast(latitude, longitude, apiKey);
-        console.log(weatherData); // Display weather data
+        console.log(weatherData);
+        displayWeatherData(weatherData); // Display weather data
 
         // Fetch data from Foursquare using the postcode coordinates
         const foursquareData = await fetchFoursquareData(latitude, longitude);
-        console.log(foursquareData); // Display Foursquare data
+        console.log(foursquareData);
+        // Display FourSquare data on the page
+        displayFourSquareData(foursquareData);
 
         // Initialize and display the map
         initMap(latitude, longitude);
@@ -72,6 +74,53 @@ const handleSubmit = async (event) => {
         console.error("Error:", error);
     }
 };
+
+
+// Function to display weather data on the page
+const displayWeatherData = (weatherData) => {
+    const temperatureElement = document.querySelector('#temperature');
+    const conditionsElement = document.querySelector('#conditions');
+    const locationElement = document.querySelector('#location');
+
+    // Extract relevant weather information
+    const temperature = weatherData.main.temp;
+    const conditions = weatherData.weather[0].description;
+    const location = weatherData.name;
+
+    // Update HTML elements with weather information
+    temperatureElement.textContent = `Temperature: ${temperature}°C`;
+    conditionsElement.textContent = `Conditions: ${conditions}`;
+    locationElement.textContent = `Location: ${location}`;
+};
+
+
+// Function to display FourSquare data on the page
+const displayFourSquareData = (fourSquareData) => {
+    const fsDataContainer = document.querySelector('.fs-data');
+    fsDataContainer.innerHTML = ''; // Clear previous content
+
+    fourSquareData.results.forEach(venue => {
+        const venueDiv = document.createElement('div');
+        venueDiv.classList.add('venue');
+
+        const nameElement = document.createElement('div');
+        nameElement.textContent = `Name: ${venue.name}`;
+        venueDiv.appendChild(nameElement);
+
+        const categoriesElement = document.createElement('div');
+        const categories = venue.categories.map(category => category.name).join(', ');
+        categoriesElement.textContent = `Category: ${categories}`;
+        venueDiv.appendChild(categoriesElement);
+
+        const addressElement = document.createElement('div');
+        addressElement.textContent = `Address: ${venue.location.formatted_address}`;
+        venueDiv.appendChild(addressElement);
+
+        fsDataContainer.appendChild(venueDiv);
+    });
+};
+
+
 
 // Add event listener to the form
 const form = document.querySelector('form');
