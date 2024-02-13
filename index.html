@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+
+    <section>
+        <!-- User input form -->
+        <form id="postcodeForm">
+            <label for="postCode">Enter your postcode</label>
+            <input type="text" id="postCode" placeholder="postcode" required>
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- Map output -->
+        <div id="map" style="height: 400px;"></div>
+    </section>
+
+    <!-- Street view panorama -->
+    <div id="pano" style="height: 400px;"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> <!-- Include Leaflet.js library -->
+</body>
+
+</html>
