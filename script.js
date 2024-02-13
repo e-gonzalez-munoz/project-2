@@ -1,11 +1,14 @@
-// Function to get latitude and longitude from postcode
 const getCoordinatesFromPostcode = async (postcode) => {
     const response = await fetch(`https://api.postcodes.io/postcodes/${postcode}`);
     const data = await response.json();
-    return {
-        latitude: data.result.latitude,
-        longitude: data.result.longitude
-    };
+    if (response.ok) {
+        return {
+            latitude: data.result.latitude,
+            longitude: data.result.longitude
+        };
+    } else {
+        throw new Error('Invalid postcode');
+    }
 };
 
 // Function to fetch weather data from OpenWeatherMap API
@@ -47,6 +50,36 @@ const fetchFoursquareData = async (latitude, longitude) => {
     }
 };
 
+const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+    const userInput = document.querySelector('#postCode');
+    const postcode = userInput.value;
+    const apiKey = "c2ec54a97eb714e25c3ad89a4fde4e44"; // Replace with your OpenWeatherMap API key
+
+    // Get latitude and longitude for the postcode
+    try {
+        const { latitude, longitude } = await getCoordinatesFromPostcode(postcode);
+
+        // Get weather forecast for the postcode
+        const weatherData = await getWeatherForecast(latitude, longitude, apiKey);
+        console.log(weatherData);
+        displayWeatherData(weatherData); // Display weather data
+
+        // Fetch data from Foursquare using the postcode coordinates
+        const foursquareData = await fetchFoursquareData(latitude, longitude);
+        console.log(foursquareData);
+        // Display FourSquare data on the page
+        displayFourSquareData(foursquareData);
+
+        // Initialize and display the map
+        initMap(latitude, longitude);
+    } catch (error) {
+        console.error("Error:", error);
+        // Display error message to the user
+        alert('Invalid postcode. Please enter a valid UK postcode.');
+    }
+};
+
 
 // Function to display weather data on the page
 const displayWeatherData = (weatherData) => {
@@ -60,7 +93,7 @@ const displayWeatherData = (weatherData) => {
     const location = weatherData.name;
 
     // Convert temperature from Kelvin to Celsius
-    const temperatureCelsius = Math.trunc(temperature - 273.15);
+    const temperatureCelsius = (temperature - 273.15).toFixed(2);
 
     // Update HTML elements with weather information
     temperatureElement.textContent = `Temperature: ${temperatureCelsius}°C`;
@@ -94,35 +127,6 @@ const displayFourSquareData = (fourSquareData) => {
         fsDataContainer.appendChild(venueDiv);
     });
 };
-
-const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-    const userInput = document.querySelector('#postCode');
-    const postcode = userInput.value;
-    const apiKey = "c2ec54a97eb714e25c3ad89a4fde4e44"; // Replace with your OpenWeatherMap API key
-
-    // Get latitude and longitude for the postcode
-    try {
-        const { latitude, longitude } = await getCoordinatesFromPostcode(postcode);
-
-        // Get weather forecast for the postcode
-        const weatherData = await getWeatherForecast(latitude, longitude, apiKey);
-        console.log(weatherData);
-        displayWeatherData(weatherData); // Display weather data
-
-        // Fetch data from Foursquare using the postcode coordinates
-        const foursquareData = await fetchFoursquareData(latitude, longitude);
-        console.log(foursquareData);
-        // Display FourSquare data on the page
-        displayFourSquareData(foursquareData);
-
-        // Initialize and display the map
-        initMap(latitude, longitude);
-    } catch (error) {
-        console.error("Error:", error);
-    }
-};
-
 
 
 // Add event listener to the form
