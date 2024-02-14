@@ -132,3 +132,15 @@ const displayFourSquareData = (fourSquareData) => {
 // Add event listener to the form
 const form = document.querySelector('form');
 form.addEventListener('submit', handleSubmit);
+
+// Function to toggle visibility
+
+const weatherData = document.querySelector('.weather-data');
+const mapData = document.querySelector('#map');
+
+const toggle = () => {
+    weatherData.style.display = 'block';
+    mapData.style.display = 'block';
+}
+
+form.addEventListener('submit', toggle);
