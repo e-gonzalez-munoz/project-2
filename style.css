@@ -1,10 +1,21 @@
+/* Classes */
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Darker+Grotesque:wght@300;400;500;600;700;800;900&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --ebony: #44444C;
+    --grey: #8C8C8C;
+    --pewter: #E9EAEC;
+    --black: #0B0909;
+}
+
 /* General styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: var(--grey);
+    color: var(--black);
     margin: 0;
     padding: 0;
+    font-family: "Lato", sans-serif;
 }
 
 section {
@@ -14,13 +25,66 @@ section {
 }
 
 /* Style for the heading */
+
+h1 {
+    color: #fff;
+    font-family: "Darker Grotesque", sans-serif;
+    font-size: 2rem;
+}
+
+/* Style for the intro container */
 .intro {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+
 /* Style for the form */
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar {
+    background: rgba(255, 255, 255, 0.2);
+    width: 300px;
+    border-radius: 60px;
+    padding: 0 20px;
+}
+
+.search-bar input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 8px 6px;
+}
+
+::placeholder {
+    color: rgb(97, 95, 95);
+}
+
+
+.search-bar button {
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: var(--pewter);
+}
+
+.search-bar button:hover {
+    background-color: #949292;
+}
+
+
 form {
     margin-bottom: 20px;
     display: flex;
@@ -36,7 +100,6 @@ form {
 @media (max-width: 676px) {
     form {
         margin: 0.75rem;
-        flex-direction: column;
     }
 
     form .postcode {
@@ -53,41 +116,13 @@ form {
 
 }
 
-label {
-    font-size: 16px;
-    color: #333;
-}
-
-input[type="text"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    width: 200px;
-}
-
-
-button[type="submit"] {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
 
 /* Styles for the weather data */
 .weather-data {
     display: none;
     margin-top: 20px;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: var(--pewter);
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -117,7 +152,7 @@ button[type="submit"]:hover {
 #temperature {
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: var(--black);
 }
 
 #conditions {
@@ -127,7 +162,7 @@ button[type="submit"]:hover {
 #location {
     font-size: 18px;
     font-style: italic;
-    color: #555;
+    color: var(--black);
 }
 
 /* Style for map */
@@ -147,7 +182,7 @@ button[type="submit"]:hover {
 .venue {
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #f9f9f9;
+    background-color: var(--pewter);
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -161,7 +196,7 @@ button[type="submit"]:hover {
 }
 
 .category {
-    margin-top: 10px;3
+    margin-top: 10px;
 }
 
 .address {
