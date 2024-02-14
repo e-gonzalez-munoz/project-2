@@ -85,11 +85,15 @@ const handleSubmit = async (event) => {
 const displayWeatherData = (weatherData) => {
     const temperatureElement = document.querySelector('#temperature');
     const conditionsElement = document.querySelector('#conditions');
+    const humidityElement = document.querySelector('#humidity');
+    const windElement = document.querySelector('#wind');
     const locationElement = document.querySelector('#location');
 
     // Extract relevant weather information
     const temperature = weatherData.main.temp;
     const conditions = weatherData.weather[0].description;
+    const humidity = weatherData.main.humidity;
+    const wind = weatherData.wind.speed;
     const location = weatherData.name;
 
     // Convert temperature from Kelvin to Celsius
@@ -98,6 +102,8 @@ const displayWeatherData = (weatherData) => {
     // Update HTML elements with weather information
     temperatureElement.textContent = `Temperature: ${temperatureCelsius}°C`;
     conditionsElement.textContent = `Conditions: ${conditions}`;
+    humidityElement.textContent = `Humidity: ${humidity}%`;
+    windElement.textContent = `Wind: ${Math.trunc(wind * 1.15078)} mph`;
     locationElement.textContent = `Location: ${location}`;
 };
 

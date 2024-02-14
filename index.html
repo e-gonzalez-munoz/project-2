@@ -8,6 +8,7 @@
     <!-- Include Leaflet.js library -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/971077234f.js" crossorigin="anonymous"></script>
     <script defer src="script.js"></script>
 </head>
 
@@ -17,13 +18,16 @@
         <h1 class="intro">Please enter a UK postcode</h1>
         <form id="postcodeForm">
             <input class="form" type="text" id="postCode" placeholder="Enter a postcode" required>
-            <button class="form" type="submit">Submit</button>
+            <button type="submit" class="form" type="submit"><i class="fa-solid fa-magnifying-glass"
+                    style="color: #000000;"></i></button>
         </form>
 
         <!-- Weather data display -->
         <div class="weather-data">
             <div id="temperature"> </div>
             <div id="conditions"></div>
+            <div id="humidity"></div>
+            <div id="wind"></div>
             <div id="location"></div>
         </div>
         <!-- Map output -->
