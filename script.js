@@ -85,6 +85,7 @@ const handleSubmit = async (event) => {
 const displayWeatherData = (weatherData) => {
     const temperatureElement = document.querySelector('#temperature');
     const conditionsElement = document.querySelector('#conditions');
+    const imgElement = document.querySelector('#img');
     const humidityElement = document.querySelector('#humidity');
     const windElement = document.querySelector('#wind');
     const locationElement = document.querySelector('#location');
@@ -92,6 +93,11 @@ const displayWeatherData = (weatherData) => {
     // Extract relevant weather information
     const temperature = weatherData.main.temp;
     const conditions = weatherData.weather[0].description;
+    const iconCode = weatherData.weather[0].icon; // Get the icon code
+
+    // Construct the URL for the weather icon
+    const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+
     const humidity = weatherData.main.humidity;
     const wind = weatherData.wind.speed;
     const location = weatherData.name;
@@ -100,6 +106,7 @@ const displayWeatherData = (weatherData) => {
     // Update HTML elements with weather information
     temperatureElement.textContent = `Temperature: ${Math.trunc(temperature - 273.15)}°C`;
     conditionsElement.textContent = `Conditions: ${conditions}`;
+    imgElement.src = iconUrl; // Set the src attribute to the icon URL
     humidityElement.textContent = `Humidity: ${humidity}%`;
     windElement.textContent = `Wind: ${Math.trunc(wind * 1.15078)} mph`;
     locationElement.textContent = `Location: ${location}`;
