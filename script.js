@@ -104,12 +104,12 @@ const displayWeatherData = (weatherData) => {
 
 
     // Update HTML elements with weather information
-    temperatureElement.textContent = `Temperature: ${Math.trunc(temperature - 273.15)}°C`;
+    temperatureElement.textContent = `${Math.trunc(temperature - 273.15)}°C`;
     conditionsElement.textContent = `Conditions: ${conditions}`;
     imgElement.src = iconUrl; // Set the src attribute to the icon URL
     humidityElement.textContent = `Humidity: ${humidity}%`;
     windElement.textContent = `Wind: ${Math.trunc(wind * 1.15078)} mph`;
-    locationElement.textContent = `Location: ${location}`;
+    locationElement.textContent = `${location}`;
 };
 
 
@@ -130,10 +130,12 @@ const displayFourSquareData = (fourSquareData) => {
         const categoriesElement = document.createElement('div');
         const categories = venue.categories.map(category => category.name);
         categoriesElement.textContent = `Category: ${categories}`;
+        categoriesElement.classList.add('category');
         venueDiv.append(categoriesElement);
 
         const addressElement = document.createElement('div');
         addressElement.textContent = `Address: ${venue.location.formatted_address}`;
+        addressElement.classList.add('address');
         venueDiv.append(addressElement);
 
         fsDataContainer.append(venueDiv);

@@ -1,3 +1,19 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style for the heading */
 .intro {
     display: flex;
     justify-content: center;
@@ -65,23 +81,10 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
 
-section {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Style for weather data */
+/* Styles for the weather data */
 .weather-data {
+    display: none;
     margin-top: 20px;
     padding: 20px;
     background-color: #f9f9f9;
@@ -89,7 +92,25 @@ section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.weather-data div {
+.firstLine,
+.secondLine {
+    display: flex;
+    align-items: center;
+}
+
+.firstLine #img {
+    width: 3.5rem;
+    height: auto;
+}
+
+.fa-location-dot {
+    margin-right: 8px;
+}
+
+#conditions,
+#humidity,
+#wind,
+.secondLine {
     margin-bottom: 10px;
 }
 
@@ -107,18 +128,6 @@ section {
     font-size: 18px;
     font-style: italic;
     color: #555;
-}
-
-
-/* Styles for the weather data */
-
-.weather-data {
-    display: none;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Style for map */
@@ -150,6 +159,16 @@ section {
 .venue div {
     margin-bottom: 5px;
 }
+
+.category {
+    margin-top: 10px;3
+}
+
+.address {
+    line-height: 1.5;
+    margin-top: 6px;
+}
+
 
 /* Style for error message */
 .error-message {
