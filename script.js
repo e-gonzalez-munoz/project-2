@@ -96,11 +96,9 @@ const displayWeatherData = (weatherData) => {
     const wind = weatherData.wind.speed;
     const location = weatherData.name;
 
-    // Convert temperature from Kelvin to Celsius
-    const temperatureCelsius = Math.trunc(temperature - 273.15);
 
     // Update HTML elements with weather information
-    temperatureElement.textContent = `Temperature: ${temperatureCelsius}°C`;
+    temperatureElement.textContent = `Temperature: ${Math.trunc(temperature - 273.15)}°C`;
     conditionsElement.textContent = `Conditions: ${conditions}`;
     humidityElement.textContent = `Humidity: ${humidity}%`;
     windElement.textContent = `Wind: ${Math.trunc(wind * 1.15078)} mph`;
@@ -119,18 +117,19 @@ const displayFourSquareData = (fourSquareData) => {
 
         const nameElement = document.createElement('div');
         nameElement.textContent = `${venue.name}`;
-        venueDiv.appendChild(nameElement);
+        nameElement.classList.add('venueName');
+        venueDiv.append(nameElement);
 
         const categoriesElement = document.createElement('div');
-        const categories = venue.categories.map(category => category.name).join(', ');
+        const categories = venue.categories.map(category => category.name);
         categoriesElement.textContent = `Category: ${categories}`;
-        venueDiv.appendChild(categoriesElement);
+        venueDiv.append(categoriesElement);
 
         const addressElement = document.createElement('div');
         addressElement.textContent = `Address: ${venue.location.formatted_address}`;
-        venueDiv.appendChild(addressElement);
+        venueDiv.append(addressElement);
 
-        fsDataContainer.appendChild(venueDiv);
+        fsDataContainer.append(venueDiv);
     });
 };
 
