@@ -7,36 +7,19 @@
     <title>Weather App</title>
     <!-- Include Leaflet.js library -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    <style>
-        /* Style for weather data */
-        .weather-data {
-            margin-top: 20px;
-        }
-
-        .weather-data div {
-            margin-bottom: 10px;
-        }
-
-        /* Style for FourSquare data */
-        .fs-data {
-            margin-top: 20px;
-        }
-
-        .fs-data div {
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 
 <body>
     <section>
-        <!-- User input form -->
+
+        <h1 class="intro">Please enter a UK postcode</h1>
         <form id="postcodeForm">
-            <label for="postCode">Enter your postcode</label>
-            <input type="text" id="postCode" placeholder="postcode" required>
-            <button type="submit">Submit</button>
+            <input class="form" type="text" id="postCode" placeholder="Enter a postcode" required>
+            <button class="form" type="submit">Submit</button>
         </form>
+
         <!-- Weather data display -->
         <div class="weather-data">
             <div id="temperature"> </div>

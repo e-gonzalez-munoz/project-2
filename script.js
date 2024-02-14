@@ -93,7 +93,7 @@ const displayWeatherData = (weatherData) => {
     const location = weatherData.name;
 
     // Convert temperature from Kelvin to Celsius
-    const temperatureCelsius = (temperature - 273.15).toFixed(2);
+    const temperatureCelsius = Math.trunc(temperature - 273.15);
 
     // Update HTML elements with weather information
     temperatureElement.textContent = `Temperature: ${temperatureCelsius}°C`;
@@ -112,7 +112,7 @@ const displayFourSquareData = (fourSquareData) => {
         venueDiv.classList.add('venue');
 
         const nameElement = document.createElement('div');
-        nameElement.textContent = `Name: ${venue.name}`;
+        nameElement.textContent = `${venue.name}`;
         venueDiv.appendChild(nameElement);
 
         const categoriesElement = document.createElement('div');
