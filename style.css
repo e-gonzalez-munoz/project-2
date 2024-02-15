@@ -241,11 +241,3 @@ form {
     line-height: 1.5;
     margin-top: 6px;
 }
-
-
-/* Style for error message */
-.error-message {
-    color: #ff0000;
-    font-size: 14px;
-    margin-top: 10px;
-}
