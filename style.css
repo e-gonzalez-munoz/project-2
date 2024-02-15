@@ -44,6 +44,12 @@ h1 {
     font-size: 2rem;
 }
 
+@media(max-width: 676px) {
+    h1 {
+        margin-bottom: 0.25em;
+    }
+}
+
 /* Style for the intro container */
 .intro {
     display: flex;
@@ -80,7 +86,6 @@ h1 {
     color: rgb(97, 95, 95);
 }
 
-
 .search-bar button {
     border: 0;
     border-radius: 50%;
@@ -96,7 +101,6 @@ h1 {
     background-color: #25a6da;
 }
 
-
 form {
     margin-bottom: 20px;
     display: flex;
@@ -107,7 +111,6 @@ form {
 .form {
     margin: 1rem;
 }
-
 
 @media (max-width: 676px) {
     form {
