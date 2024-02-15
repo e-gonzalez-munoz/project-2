@@ -18,12 +18,19 @@ const getWeatherForecast = async (latitude, longitude, apiKey) => {
     return data;
 };
 
+let mapInitialized = false; // Initialize a flag to keep track of map initialization
+
 // Function to initialize and display the map
 const initMap = async (latitude, longitude) => {
-    const map = L.map('map').setView([latitude, longitude], 13); // Initialize map centered at the latitude and longitude
+    const mapElement = document.querySelector('#map');
+    if (mapElement._leaflet_id) {
+        mapElement._leaflet_id = null; // Remove existing map
+    }
+    const map = L.map('map').setView([latitude, longitude], 13); // Initialize map centered at the new latitude and longitude
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // Add OpenStreetMap tiles
-    L.marker([latitude, longitude]).addTo(map); // Add marker at the latitude and longitude
+    L.marker([latitude, longitude]).addTo(map); // Add marker at the new latitude and longitude
 };
+
 
 // Function to fetch Four Square Data
 const fetchFoursquareData = async (latitude, longitude) => {
@@ -142,19 +149,22 @@ const displayFourSquareData = (fourSquareData) => {
     });
 };
 
-
-// Add event listener to the form
-const form = document.querySelector('form');
-form.addEventListener('submit', handleSubmit);
-
 // Function to toggle visibility
-
 const weatherData = document.querySelector('.weather-data');
 const mapData = document.querySelector('#map');
+const recommendations = document.querySelector('.recommendations');
 
 const toggle = () => {
     weatherData.style.display = 'block';
     mapData.style.display = 'block';
-}
+    recommendations.style.display = 'flex';
 
-form.addEventListener('submit', toggle);
+};
+
+// Add event listener to the form
+const form = document.querySelector('form');
+form.addEventListener('submit', event => {
+    event.preventDefault(); // Prevent the default form submission behavior
+    handleSubmit(event); // Pass the event object to the handleSubmit function
+    toggle(); // Call the toggle function
+});
