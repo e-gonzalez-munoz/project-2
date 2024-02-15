@@ -7,10 +7,23 @@
     --black: #0B0909;
 }
 
+html,
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    background: linear-gradient(to bottom, #7EC8E3, #FFFFFF);
+    color: var(--black);
+}
+
 /* General styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: var(--lightBlue);
+    background: linear-gradient(to bottom, #7EC8E3, #FFFFFF);
     color: var(--black);
     margin: 0;
     padding: 0;
